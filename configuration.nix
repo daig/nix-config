@@ -48,7 +48,7 @@ with builtins;
     cabal-install haskell.compiler.ghc862
     rustc cargo
     (python3.withPackages (p: with p;
-      [scikitlearn pytorchWithoutCuda tensorflowWithoutCuda seaborn jupyter]))
+      [scikitlearn pytorchWithCuda tensorflowWithCuda seaborn jupyter]))
   ];
 
   programs.bash.interactiveShellInit = readFile ./.bashrc;
