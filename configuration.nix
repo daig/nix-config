@@ -30,7 +30,7 @@ with builtins;
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "colemak/en-latin9";
+    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -82,15 +82,12 @@ with builtins;
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbVariant = "colemak";
-    xkbOptions = "ctrl:swapcaps";
     desktopManager = {
       default = "none";
       xterm.enable = false;
       xfce = {
         enable = true;
         noDesktop = true;
-
         enableXfwm = false;
       };
     };
