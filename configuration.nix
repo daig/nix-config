@@ -8,9 +8,15 @@ with builtins;
   imports = [./hardware-configuration.nix];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader = {
+  boot = {
+    loader = {
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = true; };
+    initrd.luks.devices = [ {
+      name = "root";
+      device = "/dev/sda2";
+      preLVM = true;
+    } ];
   };
 
 
