@@ -34,7 +34,15 @@ with builtins;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (import ./vim.nix) fasd firefox google-chrome p7zip vlc git htop nix-prefetch-scripts wget which cabal-install haskell.compiler.ghc862 tree xclip ag
+    firefox google-chrome vlc
+    (import ./vim.nix)
+    binutils gcc gnumake openssl pkgconfig
+    nix-prefetch-scripts
+    fasd git htop nix-prefetch-scripts wget which ag p7zip xclip tree file
+    cabal-install haskell.compiler.ghc862
+    rustc cargo
+    (python3.withPackages (p: with p;
+      [scikitlearn pytorchWithoutCuda tensorflowWithoutCuda seaborn jupyter]))
   ];
 
   programs.bash.interactiveShellInit = readFile ./.bashrc;
