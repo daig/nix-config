@@ -37,3 +37,40 @@ alias pbcopy='xclip -selection clipboard'
 alias hinit='cabal init --m -n -x '' -a Dai -e daig@sodality.cc -p'
 
 eval "$(fasd --init auto)"
+
+c() {
+  local oldDir="$(pwd)"
+  pushd . > /dev/null
+  cd "$1"
+  ls
+  if [ "$oldDir" = "$(pwd)" ] ;
+  then popd > /dev/null
+  fi
+}
+
+unalias z
+z() {
+  local oldDir="$(pwd)"
+  pushd . > /dev/null
+  fasd_cd -d "$1"
+  ls
+  if [ "$oldDir" = "$(pwd)" ] ;
+  then popd > /dev/null
+  fi
+}
+
+b() { popd > /dev/null && ls;}
+v() { vim $(fasd -f $@); }
+
+breadcrumbs() {
+  local dirList=`dirs`
+  echo "${dirList// / < }"
+}
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_HIDE_IF_PWD_IGNORED=true
+export GIT_PS1_SHOWCOLORHINTS=true
+export PROMPT_COMMAND='__git_ps1 "[`breadcrumbs`]" "\n$ "'
