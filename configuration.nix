@@ -28,7 +28,7 @@ with builtins;
     defaultLocale = "en_US.UTF-8";
   };
 
-  time.timeZone = "Americal/New_York";
+  time.timeZone = "America/New_York";
 
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
