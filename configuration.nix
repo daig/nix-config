@@ -57,6 +57,11 @@ with builtins;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql100;
+    dataDir = "/data/postgres";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
