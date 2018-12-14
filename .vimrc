@@ -25,6 +25,7 @@ set wildmenu
 set completeopt+=longest
 set t_Co=256
 set cmdheight=1
+set backspace=indent,eol,start
 
 noremap <Leader>Y "+y
 
