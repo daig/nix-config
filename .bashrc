@@ -36,31 +36,10 @@ alias gpr="git pull --recurse-submodule"
 alias pbcopy='xclip -selection clipboard'
 alias hinit='cabal init --m -n -x '' -a Dai -e daig@sodality.cc -p'
 
-eval "$(fasd --init auto)"
-
-c() {
-  local oldDir="$(pwd)"
-  pushd . > /dev/null
-  cd "$1"
-  ls
-  if [ "$oldDir" = "$(pwd)" ] ;
-  then popd > /dev/null
-  fi
+alias wifi_scan='sudo iwlist wlp2s0 scan | grep SSID'
+wifi_add() {
+  wpa_passphrase "$1" "$2" >> /etc/wpa_supplicant.conf && systemctl restart wpa_supplicant.service
 }
-
-unalias z
-z() {
-  local oldDir="$(pwd)"
-  pushd . > /dev/null
-  fasd_cd -d "$1"
-  ls
-  if [ "$oldDir" = "$(pwd)" ] ;
-  then popd > /dev/null
-  fi
-}
-
-b() { popd > /dev/null && ls;}
-v() { vim $(fasd -f $@); }
 
 breadcrumbs() {
   local dirList=`dirs`
